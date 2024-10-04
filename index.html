@@ -33,24 +33,6 @@
       flex-direction: column;
     }
 
-    #backButton {
-      position: absolute;
-      top: 10px; /* Justerat för mobil */
-      left: 10px; /* Justerat för mobil */
-      font-size: 18px; /* Mindre textstorlek för mobil */
-      background-color: transparent;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-      transition: transform 0.3s ease, text-shadow 0.3s ease;
-      box-shadow: none;
-      text-shadow: none;
-    }
-  
-    #backButton:hover {
-      transform: scale(1.5);
-      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); 
-    }
 
     .game-container {
       background-image: url(images/Pumpa_3.png);
@@ -1002,7 +984,7 @@ function goToHomepage() {
 
     
 
-    <button id="backButton" onclick="goToHomepage()">⬅️</button>
+    
 
     <div id="levelTransition" class="level-transition" style="display: none;">
       <h2 id="transitionMessage">Next Level!</h2>
