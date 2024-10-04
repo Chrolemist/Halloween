@@ -791,7 +791,7 @@ function buyExtraTime() {
 
   function gameWin() { 
     clockSound.pause();
-    winSound.play();
+    
   
     
     clearInterval(gameTimerInterval);  
@@ -809,6 +809,7 @@ function buyExtraTime() {
     
     const winMessageElement = document.getElementById('winMessage');
     winMessageElement.style.display = 'block';  
+    winSound.play();
       
     document.getElementById('formTypeWords').style.display = 'none'; 
     document.getElementById('displayChosenWord').style.display = 'none'; 
