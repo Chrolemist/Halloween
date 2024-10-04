@@ -789,9 +789,9 @@ function buyExtraTime() {
       document.getElementById('level').innerText = `Level: ${currentLevel}`;
   }
 
-  function gameWin() {
-    winSound.play();
+  function gameWin() { 
     clockSound.pause();
+    winSound.play();
   
     
     clearInterval(gameTimerInterval);  
