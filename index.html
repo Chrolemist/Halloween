@@ -57,15 +57,15 @@
       background-color: white;
       padding: 10px; /* Minska padding */
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-      width: 100vw; /* Täcker hela bredden */
-      height: auto; /* Sätt höjden till auto för att anpassa efter innehållet */
+      width: 100vw;
+      height: auto; /* Auto-höjd */
       text-align: center;
       position: relative;
       display: flex;
-      flex-direction: column; /* Vertikal layout */
-      justify-content: flex-start; /* Se till att alla element börjar från toppen */
+      flex-direction: column;
+      justify-content: flex-start;
       align-items: center;
-      gap: 2px; /* Minskar avståndet mellan elementen i flex-layoten */
+      gap: 2px; /* Minskar avstånd mellan element */
     }
 
     h1 {
@@ -404,39 +404,41 @@
       height: 8px !important; 
     }
     
-    @media (max-width: 600px) {
-      .game-container {
-        padding: 10px; /* Minska padding på små skärmar */
-        width: 100vw; /* Säkerställer full bredd */
-        height: 100vh; /* Säkerställer full höjd */
-        border-radius: 0; /* Ta bort avrundning på mobil */
-      }
-    
-      h1 {
-        font-size: 24px; /* Minska rubrikstorlek för mobil */
-      }
-    
-      button {
-        font-size: 16px; /* Minska knappstorlek för mobil */
-      }
-    }
-
-  #level {
-    font-size: 30px; /* Anpassa rubrikstorlek */
+    /* Specifika anpassningar för mobil */
+@media (max-width: 600px) {
+  .game-container {
+    padding: 5px; /* Minska padding ytterligare för mobil */
+    gap: 0; /* Ingen mellanrum mellan element */
   }
 
-  #startTimer {
-    font-size: 40px; /* Mindre timertext för små skärmar */
+  #level {
+    font-size: 24px;
+    margin-bottom: 2px; /* Minska avståndet till nästa element */
+  }
+
+  #coins {
+    font-size: 18px;
+    margin-bottom: 2px; /* Minska avståndet */
+  }
+
+  #displayChosenWord {
+    font-size: 16px;
+    margin-bottom: 2px; /* Minska avståndet */
   }
 
   #gameTimer, #extraTimer {
-    font-size: 18px;
-    width: 60px;
+    font-size: 16px;
+    padding: 2px;
+    width: 60px; /* Minska storleken för mobil */
+    margin-bottom: 2px;
   }
 
-  input[type="text"], select {
-    font-size: 16px; /* Standardstorlek för inmatningsfältet */
+  button {
+    font-size: 14px; /* Mindre textstorlek för knappar */
+    padding: 4px;
+    margin: 2px 0; /* Minska marginalerna ytterligare */
   }
+}
 
     
     
