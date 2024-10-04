@@ -481,7 +481,7 @@
     let currentLevel = 1;
     let correctWordsCount = 0;
     let startCountdown = 4;
-    let countdown = 10;
+    let countdown = 15;
     let extraTime = 0;
     let maxReachedLevel = 1;
 
@@ -500,9 +500,16 @@
     
 
     let wordLists = {
-      level1: ['Spooky snacks', 'pumpkin party', 'Trick or treat', 'Monster mash'],
-      level2: ['Ghosts are dancing in the moonlight', 'Trick or treat, smell my feet!', 'Pumpkin spice and everything nice', 'Witches fly on broomsticks tonight'],
-      level3: ['The haunted house is filled with ghosts and creepy shadows tonight', 'The black cat crossed my path right before Halloween night', 'Pumpkin carving brings friends together for a night of fun', 'Trick-or-treaters knock on doors, hoping for the best candy'],
+      level1: ['Pumpkin'],  // Enkelt ord för nivå 1
+      level2: ['The ghost floats'],  // Enkel mening för nivå 2
+      level3: ['The spooky skeleton dances'],  // Tre ord i meningen för nivå 3
+      level4: ['A haunted house in the dark'],  // Fyra ord för nivå 4
+      level5: ['The full moon glows over the graveyard'],  // Fem ord för nivå 5
+      level6: ['The werewolf howls loudly under the full moon'],  // Sex ord för nivå 6
+      level7: ['The witch flies on her broomstick through the night sky'],  // Sju ord för nivå 7
+      level8: ['The black cat crossed my path just before midnight'],  // Åtta ord för nivå 8
+      level9: ['The vampire drinks blood on Halloween night in the spooky castle'],  // Nio ord för nivå 9
+      level10: ['On Halloween night, ghosts and monsters roam the streets, scaring everyone they meet']  // Tio ord för nivå 10
     };
 
     window.onload = function() {
@@ -758,7 +765,7 @@ function buyExtraTime() {
       hasTypedCorrectWord = false;
   
       startCountdown = 4;
-      countdown = 10;
+      countdown = 15;
   
       
       clearInterval(gameTimerInterval);
