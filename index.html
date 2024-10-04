@@ -57,12 +57,15 @@
       background-color: white;
       padding: 20px;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-      width: 90%; /* Flexibel bredd */
-      max-width: 700px; /* Maxbredd för stora skärmar */
+      width: 100vw; /* Täcker hela skärmens bredd */
+      height: 100vh; /* Täcker hela skärmens höjd */
       text-align: center;
       position: relative;
-      border-radius: 20px;
-      margin-bottom: 20px; /* Ger lite utrymme under containern */
+      border-radius: 0; /* Ta bort avrundade hörn för att täcka hela skärmen */
+      display: flex; /* Flexbox för att centrera innehållet */
+      flex-direction: column; /* Vertikal layout */
+      justify-content: center; /* Centrera innehållet vertikalt */
+      align-items: center; /* Centrera innehållet horisontellt */
     }
 
     h1 {
@@ -408,23 +411,22 @@
       height: 8px !important; 
     }
     
-/* Anpassning för mindre skärmar */
-@media (max-width: 400px) {
-  .game-container {
-    padding: 10px;  /* Minska padding för små skärmar */
-    border-radius: 0; /* Ta bort border-radius för att täcka hela skärmen */
-    width: 100vw;  /* Säkerställer full bredd */
-    height: 100vh; /* Säkerställer full höjd */
-  }
-
-  h1 {
-    font-size: 24px; /* Minska rubrikstorlek för små skärmar */
-  }
-
-  button {
-    font-size: 14px; /* Minska knappstorlek för små skärmar */
-    width: 100%; /* Knapparna täcker hela bredden */
-  }
+    @media (max-width: 600px) {
+      .game-container {
+        padding: 10px; /* Minska padding på små skärmar */
+        width: 100vw; /* Säkerställer full bredd */
+        height: 100vh; /* Säkerställer full höjd */
+        border-radius: 0; /* Ta bort avrundning på mobil */
+      }
+    
+      h1 {
+        font-size: 24px; /* Minska rubrikstorlek för mobil */
+      }
+    
+      button {
+        font-size: 16px; /* Minska knappstorlek för mobil */
+      }
+    }
 
   #level {
     font-size: 30px; /* Anpassa rubrikstorlek */
