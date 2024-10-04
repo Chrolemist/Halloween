@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/noty@3/noty.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/noty@3/noty.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+  <title>Laboration 1</title>
+
+  <style>
+
+    
+    body {
+      font-family: Helvetica, sans-serif;
+      background-color: #313030;
+      background-image: url(images/background.png);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    #backButton {
+      position: absolute;
+      top: 30px;
+      left: 100px;
+      font-size: 24px; 
+      background-color: transparent; 
+      border: none; 
+      cursor: pointer; 
+      padding: 0;       
+      transition: transform 0.3s ease, text-shadow 0.3s ease;
+      box-shadow: none;
+      text-shadow: none;
+      width: auto;
+      animation: none;
+    }
+  
+    #backButton:hover {
+      transform: scale(1.5);
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); 
+    }
+
+    .game-container {
+      background-image: url(images/pumpa_3.png);
+      background-color: white;
+      padding: 20px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      width: 700px;
+      text-align: center; 
+      position: relative; 
+      border-radius: 200px;
+    }
+
+    h1 {
+      font-size: 60px;
+      margin-bottom: 30px;
+      color: #ff7220;
+    }
+
+    p {
+      color: #ff7220;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      width: 50px;
+      position: absolute;
+    }
+
+    .word-list-container {
+      display: flex;
+      justify-content: center; 
+      align-items: center; 
+      width: 100%; 
+      height: 100%; 
+      position: relative;
+    }
+
+    #level {
+      font-size: 80px; 
+      margin-bottom: 30px;
+      color: #ffcc00; 
+      text-shadow: 
+        0 0 10px #ff9900, 
+        0 0 20px #ff6600, 
+        0 0 30px #ff3300, 
+        0 0 40px #ff0000; 
+      font-family: 'Creepster', cursive; 
+      transition: transform 0.3s ease, text-shadow 0.3s ease;
+      text-align: center; 
+      letter-spacing: 3px; 
+    }
+    
+    #level:hover {
+      transform: scale(1.1); /* Add a slight zoom effect on hover */
+      text-shadow: 
+        0 0 20px #ff3300, 
+        0 0 30px #ff0000, 
+        0 0 40px #ff2200, 
+        0 0 50px #ff6600; /* More intense glow when hovered */
+    }
+    
+    .word-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center; 
+      position: relative;
+    }
+    
+    .word-list li {
+      padding: 15px;
+      margin: 10px 0;
+      background-color: #FF5722; 
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, text-shadow 0.3s ease;
+      font-family: 'Press Start 2P', cursive;
+      color: #FFFFFF; 
+      border: 2px solid #000000; 
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); 
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); 
+    }
+    
+    .word-list li:hover {
+      transform: scale(1.2);
+      background-color: #E64A19; 
+      text-shadow: 2px 2px 10px rgba(255, 165, 0, 0.8); 
+      box-shadow: 0px 0px 15px rgba(255, 165, 0, 0.9);
+    }
+    
+    .timer-container {
+      display: flex;
+      flex-direction: column; 
+      align-items: center; 
+    }
+
+    #startTimer {
+      position: fixed;      
+      top: 50%;             
+      left: 50%;            
+      transform: translate(-50%, -50%); 
+      font-size: 200px;    
+      color: white;        
+      z-index: 9999;        
+      pointer-events: none; 
+  }
+
+    .hidden {
+      opacity: 0;
+    }
+    
+    #extraTimer {
+      font-size: 20px;
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 3px solid aqua;
+      border-radius: 10px;
+      background-color: rgba(0, 0, 0, 0.1);
+      color: white;
+      width: 60px;
+    }
+      
+    #gameTimer {
+      font-size: 40px;
+      margin: 10px 0;
+      padding: 10px;
+      border: 3px solid aqua;
+      border-radius: 10px;
+      background-color: rgba(0, 0, 0, 0.1);
+      color: white;
+      width: 120px;
+      
+    }
+
+    #extraTimer, #gameTimer {
+      display: block;
+      margin: 0 auto;
+    }
+  
+
+    input[type="text"], select {
+      width: 100%;
+      max-width: 300px;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .button-container {
+      display: flex;
+      flex-direction: column; 
+      justify-content: center;
+      gap: 20px; 
+      margin-top: 20px; 
+    }
+    
+    button {
+      font-size: 25px;
+      background-color: #7f1d1d; 
+      color: #ffcc00; 
+      border-radius: 10px;
+      border: 2px solid #ffcc00; 
+      box-shadow: 0 0 15px rgba(255, 102, 0, 0.5);  
+      text-shadow: 0 0 10px rgba(255, 102, 0, 1);
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      padding: 10px 20px;
+      cursor: pointer;
+      width: 450px;
+      margin: auto;
+    } 
+  
+    button:hover {
+        background-color: #b51717; 
+        transform: scale(1.1);
+        text-shadow: 2px 2px 10px rgba(255, 165, 0, 1);
+    }
+
+    #displayChosenWord {
+      font-size: 25px;    
+      padding: 50px;
+      background-color: rgba(50, 50, 50, 0.8);
+      color: #ffcc00; 
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255, 165, 0, 0.8); 
+      text-shadow: 0 0 10px rgba(255, 165, 0, 0.8); 
+      text-align: center; 
+      display: none;
+  }
+
+    #score{
+      color: #ff7220;
+      margin-top: 10px;
+    }
+
+    .success {
+      font-size: 80px;
+      text-align: center;
+      padding: 30px;
+      background-color: rgba(0, 128, 0, 0.7); /* Grön för framgång */
+      color: #fff;
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 255, 0, 0.7); /* Grön skugga */
+      text-shadow: 0 0 10px rgba(0, 255, 0, 1);
+      animation: none; /* Ta bort animationen här */
+  }
+
+  .failure {
+    font-size: 80px;
+    text-align: center;
+    padding: 30px;
+    background-color: rgba(128, 0, 0, 0.7); /* Röd för misslyckande */
+    color: #fff;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.7); /* Röd skugga */
+    text-shadow: 0 0 10px rgba(255, 0, 0, 1);
+    animation: glitter 1.5s infinite ease-in-out; /* Bevara animationen här för att göra det mer dramatiskt */
+}
+    
+    @keyframes glitter {
+      0%, 100% {
+        text-shadow: 0 0 10px gold, 0 0 20px orange, 0 0 30px chocolate;
+      }
+      50% {
+        text-shadow: 0 0 20px white, 0 0 30px orange, 0 0 40px chocolate;
+      }
+    }
+    
+    
+    .failure {
+      color: red;
+      text-shadow: 0 0 10px red, 0 0 20px darkred;
+    }
+
+    #coins {
+      font-size: 20px;
+      color: #ff7220;
+      font-weight: bold;
+    }
+
+    .monster {
+      width: 60px; 
+      height: auto; 
+      display:none;
+    }
+
+    #restart
+    {
+      display:none;
+      margin: 20px auto;
+      text-align: center;
+    }
+
+    .level-transition {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 40px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 48px;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+      opacity: 0;
+      z-index: 9999;  
+      transition: opacity 2s ease-in-out;
+    }
+    
+    .level-transition.show {
+      opacity: 1;
+    }
+    
+    .level-transition.fade-out {
+      opacity: 0;
+      transition: opacity 2s ease-in-out;
+    }
+
+    #levelSelectMenu {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0, 0, 0, 0.9);
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+    }
+    
+    #levelSelectMenu {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0, 0, 0, 0.9);
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+    }
+    
+    #levelSelectMenu ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    #levelSelectMenu ul li {
+      padding: 10px;
+      margin: 5px;
+      background-color: #333;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    
+    #levelSelectMenu ul li:hover {
+      background-color: #555;
+    }
+    
+    #levelSelectMenu button {
+      background-color: #555;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    
+    #levelSelectMenu button:hover {
+      background-color: #777;
+    }
+
+    .noty_bar {
+      width: 500px !important;
+      max-width: 90% !important;
+      padding: 20px !important;
+      border-radius: 10px !important;
+    }
+    
+    .noty_message {
+      font-size: 100px !important; 
+      color: #fff !important; 
+    }
+    
+    .noty_progressbar {
+      height: 8px !important; 
+    }
+    
+    
+    
+    
+   
+  </style>
+</head>
+<body>
+  <script>
+
+    const notyf = new Notyf({
+      duration: 5000,
+      position: {
+        x: 'center',
+        y: 'top',    
+      }
+    });
+    
+
+    let clickSound = new Audio('soundeffects/click.wav');
+    let clockSound = new Audio('soundeffects/clock.wav');
+    clockSound.loop = true;
+    let heartbeatsSound = new Audio('soundeffects/heartbeats.wav');
+    let backgroundSound = new Audio('soundeffects/background_ambient.mp3');
+    let coinSound = new Audio('soundeffects/coin.wav');
+    let winSound = new Audio('soundeffects/win.wav');
+    let loseSound = new Audio('soundeffects/lose.wav');
+    let wrongSound = new Audio('soundeffects/wrong.mp3');
+    let transitionSound = new Audio('soundeffects/level_up.wav');
+    let ambientSound = new Audio('soundeffects/background_ambient.mp3');
+    ambientSound.loop = true;
+
+    let score = 0;
+    let chosenWord = '';
+    let coins = 0;
+    let currentLevel = 1;
+    let correctWordsCount = 0;
+    let startCountdown = 4;
+    let countdown = 10;
+    let extraTime = 0;
+    let maxReachedLevel = 1;
+
+    let hasTypedCorrectWord = false;
+    let gameOverFlag = false;
+    let gameStartedFlag = false;
+    let currentTypedWord = '';
+    let currentTypedIndex = 0;
+    let gameTimerInterval;
+    let extraTimeInterval;
+    let isGameRunning = false;
+
+    
+    let extraCountdown = 0;  
+    let isExtraTimerActive = false;
+    
+
+    let wordLists = {
+      level1: ['Spooky snacks', 'pumpkin party', 'Trick or treat', 'Monster mash'],
+      level2: ['Ghosts are dancing in the moonlight', 'Trick or treat, smell my feet!', 'Pumpkin spice and everything nice', 'Witches fly on broomsticks tonight'],
+      level3: ['The haunted house is filled with ghosts and creepy shadows tonight', 'The black cat crossed my path right before Halloween night', 'Pumpkin carving brings friends together for a night of fun', 'Trick-or-treaters knock on doors, hoping for the best candy'],
+    };
+
+    window.onload = function() {
+      
+      
+
+      new Noty({
+        text: '<span style="font-size: 30px;">Choose a sentence to start</span>',
+        type: 'info',
+        layout: 'topCenter',
+        theme: 'sunset',
+        timeout: 5000,
+        closeWith: ['click'],
+        progressBar: true
+      }).show();
+        
+      updateWordList(); 
+      
+      
+      document.getElementById('levelSelectButton').style.display = 'none';    
+      
+    };
+
+    
+
+    function ChooseWord(word) {
+      clickSound.play();
+      ambientSound.play();
+      
+      chosenWord = word;
+      document.getElementById('displayChosenWord').innerText = chosenWord;
+      document.getElementById('wordList').style.display = 'none';
+      startCountdownTimer();  
+    }
+
+    function TypeWords(event) {
+      event.preventDefault();
+      
+      let typedWord = document.getElementById('typeWords').value.trim();
+    
+      if (typedWord === "") {         
+          notyf.error("You must type something!");
+          wrongSound.play();
+          return;
+      }
+  
+      
+      if (typedWord.toLowerCase() === chosenWord.toLowerCase()) {
+          coinSound.play();
+          coins++;
+          updateCoins();
+          
+          hasTypedCorrectWord = true; 
+    
+          correctWordsCount++;
+          document.getElementById('typedWords').innerHTML += typedWord + '<br>';
+          document.getElementById('typeWords').value = '';  
+  
+          calculateScore(typedWord);
+      } else {
+          wrongSound.play();
+      }
+  }
+
+  function startGame() {
+    
+    
+        
+        document.getElementById('gameTimer').innerText = countdown;
+        gameTimerInterval = setInterval(function() {
+            countdown--;
+            document.getElementById('gameTimer').innerText = countdown;
+
+            if (countdown === 0) {
+                clearInterval(gameTimerInterval);  
+                gameOver();
+            }
+        }, 1000);
+    }
+
+
+    function startCountdownTimer() { 
+    heartbeatsSound.play();
+    
+    let ready = "Ready!";     
+    document.getElementById('startTimer').style.display = 'block';
+    document.getElementById('startTimer').style.opacity = '1';
+
+    document.getElementById('startTimer').innerText = ready;
+
+    let countdownInterval = setInterval(function() {
+        startCountdown--;
+        document.getElementById('startTimer').innerText = startCountdown;
+
+        if (startCountdown === 0) {
+            clearInterval(countdownInterval);
+            document.getElementById('startTimer').innerText = "GO!";
+            startGameCountdown();
+            document.getElementById('startTimer').style.opacity = '0';
+        }
+    }, 1000);
+}
+
+
+    
+function startGameCountdown() {
+  heartbeatsSound.pause();
+
+  isGameRunning = true;  
+     
+  document.getElementById('formTypeWords').style.display = 'block';
+  document.getElementById('typeWords').focus();
+  document.getElementById('displayChosenWord').style.display = 'block'; 
+
+  
+  if (extraCountdown > 0 && !isExtraTimerActive) {
+      console.log("Extra time is active, starting extra timer first...");
+      startExtraTimer();  
+  } else {
+      startGameTimer(); 
+  }
+}
+
+  function startExtraTimer() {
+    isExtraTimerActive = true; 
+    document.getElementById('extraTimer').style.display = 'block'; 
+
+    extraTimeInterval = setInterval(function () {
+        extraCountdown--;
+        document.getElementById('extraTimer').innerText = extraCountdown;
+
+        
+        clockSound.currentTime = 0;
+        clockSound.play();
+
+        if (extraCountdown === 0) {
+            clearInterval(extraTimeInterval); 
+            isExtraTimerActive = false; 
+            extraTime = 0;
+            document.getElementById('extraTimer').style.display = 'none'; 
+
+            
+            if (isGameRunning) {
+                startGameTimer();  
+            }
+        }
+    }, 1000);
+}
+
+function startGameTimer() {
+
+  
+  if (extraCountdown > 0 && !isExtraTimerActive) {
+      
+      startExtraTimer();
+      return;
+  }
+
+  isGameRunning = true;  
+  document.getElementById('gameTimer').innerText = countdown;  
+
+  gameTimerInterval = setInterval(function () {
+      countdown--;
+      document.getElementById('gameTimer').innerText = countdown;
+
+      
+      clockSound.currentTime = 0;
+      clockSound.play();
+
+      if (countdown === 0) {
+          clearInterval(gameTimerInterval);  
+
+          
+          if (!hasTypedCorrectWord) {
+              gameOver();  
+          } else {
+              gameWin();  
+          }
+      }
+  }, 1000);
+}
+
+function buyExtraTime() {
+  if (coins >= 5) {
+      coins -= 5;  
+      updateCoins();
+      notyf.success('You bought 5 Coins!');
+
+      
+      extraCountdown += 5;
+      document.getElementById('extraTimer').innerText = extraCountdown;  
+
+      
+      if (!isGameRunning) {
+          return;
+      }
+
+      
+      if (isExtraTimerActive) {
+          return;
+      }
+
+      
+      clearInterval(gameTimerInterval);  
+      startExtraTimer();
+      
+  } else {
+    notyf.error('Not enough coins!');
+    wrongSound.setInterval = 0;
+    wrongSound.play();
+  }
+}
+
+    function calculateScore(typedWord) {
+      const totalLetters = Math.max(chosenWord.length, typedWord.length);
+      let correctLetters = 0;
+    
+      for (let i = 0; i < totalLetters; i++) {
+        if (chosenWord[i] === typedWord[i]) {
+          correctLetters++;
+        }
+      }
+    
+      
+      score += correctLetters;
+      updateCoins();  
+    
+      
+      return score;
+    }
+
+    
+
+    function updateWordList() {
+      let wordList = wordLists[`level${currentLevel}`];
+      if (!wordList) {
+        console.error(`Word list for level ${currentLevel} is not available!`);
+        return;
+      }
+      let wordListHTML = wordList.map(word => `<li onclick="ChooseWord('${word}')">${word}</li>`).join('');
+      document.getElementById('wordList').innerHTML = wordListHTML;
+      document.getElementById('wordList').style.display = 'block';
+    }
+
+    function updateCoins() {
+      document.getElementById('coins').innerText = `🪙 Coins: ${coins}`;
+    }
+
+  
+    function resetGameForNextLevel() {
+      gameOverFlag = false;
+      gameStartedFlag = false; 
+      hasTypedCorrectWord = false;
+  
+      startCountdown = 4;
+      countdown = 10;
+  
+      
+      clearInterval(gameTimerInterval);
+      clearInterval(extraTimeInterval);
+  
+      document.getElementById('startTimer').style.display = 'none'; 
+      document.getElementById('gameTimer').style.display = 'block';
+      document.getElementById('extraTimer').style.display = 'none';
+      document.getElementById('displayChosenWord').style.display = 'none'; 
+  
+      updateLevelDisplay();
+  
+      
+      document.getElementById('winMessage').style.display = 'none';
+      document.getElementById('loseMessage').style.display = 'none';
+      document.getElementById('restart').style.display = 'none';
+      document.getElementById('typedWords').innerHTML = '';
+      document.getElementById('formTypeWords').style.display = 'none';
+      document.getElementById('typeWords').value = '';
+     
+      updateWordList();
+  
+      document.getElementById('levelSelectButton').style.display = 'block';
+  }
+
+    function updateLevelDisplay() {
+      
+      document.getElementById('level').innerText = `Level: ${currentLevel}`;
+  }
+
+  function gameWin() {
+    winSound.play();
+    clockSound.pause();
+  
+    
+    clearInterval(gameTimerInterval);  
+    clearInterval(extraTimeInterval);  
+  
+    
+    coins++;  
+    updateCoins();  
+  
+    
+    if (currentLevel > maxReachedLevel) {
+        maxReachedLevel = currentLevel;
+    }
+  
+    
+    const winMessageElement = document.getElementById('winMessage');
+    winMessageElement.style.display = 'block';  
+      
+    document.getElementById('formTypeWords').style.display = 'none'; 
+    document.getElementById('displayChosenWord').style.display = 'none'; 
+  
+    
+    document.getElementById('nextLevelButton').style.display = 'block';
+  
+    
+    document.getElementById('levelSelectButton').style.display = 'block';
+  
+    isGameRunning = false; 
+  }
+    
+function gameOver() {
+  if (hasTypedCorrectWord) {
+      gameWin(); 
+      return; 
+  }
+
+  
+  heartbeatsSound.pause();
+  clockSound.pause();
+  loseSound.play();
+
+  clearInterval(gameTimerInterval);  
+  clearInterval(extraTimeInterval);  
+
+  document.getElementById('formTypeWords').style.display = 'none';
+  document.getElementById('displayChosenWord').style.display = 'none'; 
+
+  document.getElementById('loseMessage').style.display = 'block';
+  document.getElementById('restart').style.display = 'block';
+
+  isGameRunning = false;
+}
+
+  function showAlert(message) {
+    alert(message); 
+  }
+
+  
+
+  function playAgain() {
+    
+    resetGameForNextLevel(); 
+}
+
+function goToNextLevel() {
+  
+  currentLevel++;
+  if (currentLevel > maxReachedLevel) {
+    maxReachedLevel = currentLevel; 
+  }
+  resetGameForNextLevel();
+}
+
+function startLevelTransition() {
+  
+  document.getElementById('nextLevelButton').style.display = 'none';
+  showCurrentLevel(); 
+}
+
+function showCurrentLevel() {
+  
+  const levelTransitionDiv = document.getElementById('levelTransition');
+  const transitionMessage = document.getElementById('transitionMessage');
+  transitionMessage.innerText = `Level ${currentLevel}`; 
+  levelTransitionDiv.style.display = 'block';
+
+  
+  levelTransitionDiv.classList.add('show');
+
+  
+  setTimeout(() => {
+      
+      showNextLevel();
+  }, 1000); 
+}
+
+function showNextLevel() {
+  
+  transitionSound.play();
+
+  
+  const levelTransitionDiv = document.getElementById('levelTransition');
+  const transitionMessage = document.getElementById('transitionMessage');
+  transitionMessage.innerText = `Level ${currentLevel + 1}`; 
+
+  
+  setTimeout(() => {
+      levelTransitionDiv.classList.add('fade-out');
+
+      setTimeout(() => {
+          
+          levelTransitionDiv.style.display = 'none';
+          levelTransitionDiv.classList.remove('show', 'fade-out'); 
+
+          
+          goToNextLevel();
+      }, 2000); 
+  }, 3000); 
+}
+
+function showPreviousLevels() {
+  const levelSelectMenu = document.getElementById('levelSelectMenu');
+  const previousLevelsList = document.getElementById('previousLevelsList');
+
+  
+  levelSelectMenu.style.display = 'block';
+
+  
+  previousLevelsList.innerHTML = '';
+
+  
+  for (let i = 1; i <= maxReachedLevel; i++) {
+      const levelItem = document.createElement('li');
+      levelItem.innerText = `Go to Level ${i}`;
+      levelItem.onclick = function() {
+          replayLevel(i);
+      };
+      previousLevelsList.appendChild(levelItem);
+  }
+}
+
+function replayLevel(level) {
+  
+  document.getElementById('levelSelectMenu').style.display = 'none';
+
+  
+  currentLevel = level;
+  updateLevelDisplay();
+  updateWordList();
+  resetGameForNextLevel();
+}
+
+function closeLevelSelectMenu() {
+  
+  document.getElementById('levelSelectMenu').style.display = 'none';
+}
+
+function closeLevelSelectMenu() {
+  
+  document.getElementById('levelSelectMenu').style.display = 'none';
+}
+
+function startClockLoop() {
+  let clockSound = new Audio('soundeffects/clock.wav');
+  let initialSpeed = 1; 
+  let speedIncreaseFactor = 0.1;
+  let currentInterval;
+
+  
+  currentInterval = setInterval(() => {
+      
+      clockSound.playbackRate = initialSpeed;
+      clockSound.currentTime = 0; 
+      clockSound.play();
+
+      
+      initialSpeed += speedIncreaseFactor;
+
+      console.log("Current speed: " + initialSpeed); 
+  }, 1000); 
+}
+
+function stopClockLoop() {
+  
+  clearInterval(currentInterval); 
+}
+
+function goToHomepage() {
+  window.location.href = 'index.html';
+}
+
+  </script>
+
+  
+
+  <div id="startTimer"></div>
+  <div class="game-container">
+
+    <div class="timer-container">
+      
+      <div id="extraTimer" style="display: none;">🕒</div>
+      <div id="gameTimer">🕒</div>
+    </div>
+    
+
+    
+
+    <button id="backButton" onclick="goToHomepage()">⬅️</button>
+
+    <div id="levelTransition" class="level-transition" style="display: none;">
+      <h2 id="transitionMessage">Next Level!</h2>
+    </div>
+
+    
+    <h1 id="level">Level: 1</h1>
+      
+    <div id="displayChosenWord"></div>
+      
+   
+    
+
+    <div id="winMessage" class="success" style="display: none;">You Win!</div>
+    <div id="loseMessage" class="failure" style="display: none;">You Lose!</div>
+    
+
+    <div id="coins">🪙 Coins: 0</div>
+
+    
+    
+
+    <div class="word-list-container">
+      <ul id="wordList" class="word-list"></ul>
+    </div>
+
+    <form id="formTypeWords" onsubmit="TypeWords(event);" style="display:none;">
+      <input type="text" id="typeWords" placeholder="Type the sentence then press enter" autocomplete="off" onpaste="showAlert('Copy-pasting is not allowed!'); return false;">
+    </form>
+
+    <div class="button-container">
+      <button id="nextLevelButton" onclick="startLevelTransition()" style="display:none;">Next Level</button>
+      <button id="restart" onclick="playAgain()">Play again</button>
+      <button onclick="buyExtraTime()">Buy 5 Extra Seconds (5 Coins)</button>
+      <button id="levelSelectButton" onclick="showPreviousLevels()">Select Levels</button>
+  </div>
+
+    <div id="levelSelectMenu" style="display: none;">
+      <h3>Select a Level:</h3>
+      <ul id="previousLevelsList"></ul>
+      <button onclick="closeLevelSelectMenu()">Close</button>
+    </div>
+    
+    <!--<h3 id="score">Score: 0</h3>-->
+
+    <div id="typedWords"></div>
+
+
+  </div>
+
+</body>
+</html>
