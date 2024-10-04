@@ -408,38 +408,39 @@
       height: 8px !important; 
     }
     
-    /* Anpassning för mindre skärmar */
+/* Anpassning för mindre skärmar */
 @media (max-width: 400px) {
   .game-container {
-    width: 100%;
-    padding: 10px;
-    border-radius: 20px;
+    padding: 10px;  /* Minska padding för små skärmar */
+    border-radius: 0; /* Ta bort border-radius för att täcka hela skärmen */
+    width: 100vw;  /* Säkerställer full bredd */
+    height: 100vh; /* Säkerställer full höjd */
   }
 
   h1 {
-    font-size: 30px;
+    font-size: 24px; /* Minska rubrikstorlek för små skärmar */
   }
 
   button {
-    font-size: 16px;
-    width: 100%;
+    font-size: 14px; /* Minska knappstorlek för små skärmar */
+    width: 100%; /* Knapparna täcker hela bredden */
   }
 
   #level {
-    font-size: 40px;
+    font-size: 30px; /* Anpassa rubrikstorlek */
   }
 
   #startTimer {
-    font-size: 50px;
+    font-size: 40px; /* Mindre timertext för små skärmar */
   }
 
   #gameTimer, #extraTimer {
-    font-size: 20px;
-    width: 80px;
+    font-size: 18px;
+    width: 60px;
   }
 
   input[type="text"], select {
-    font-size: 16px;
+    font-size: 16px; /* Standardstorlek för inmatningsfältet */
   }
 }
     
