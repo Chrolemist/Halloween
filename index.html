@@ -28,7 +28,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh; /* Ändrat från height: 100vh för att hantera mobila problem */
+      padding: 20px; /* Lagt till padding för små skärmar */
+      flex-direction: column; /* Se till att layouten är responsiv */
     }
 
     #backButton {
@@ -55,11 +57,12 @@
       background-color: white;
       padding: 20px;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-      width: 90%; /* Flexibel bredd för mobil */
-      max-width: 700px; /* Maxbredd för större skärmar */
+      width: 90%; /* Flexibel bredd */
+      max-width: 700px; /* Maxbredd för stora skärmar */
       text-align: center;
       position: relative;
-      border-radius: 20px; /* Mindre rundade hörn för mobil */
+      border-radius: 20px;
+      margin-bottom: 20px; /* Ger lite utrymme under containern */
     }
 
     h1 {
@@ -245,7 +248,7 @@
     }
 
     .success {
-      font-size: 80px;
+      font-size: 150%;
       text-align: center;
       padding: 30px;
       background-color: rgba(0, 128, 0, 0.7); /* Grön för framgång */
@@ -261,7 +264,7 @@
   }
 
   .failure {
-    font-size: 80px;
+    font-size: 150%;
     text-align: center;
     padding: 30px;
     background-color: rgba(128, 0, 0, 0.7); /* Röd för misslyckande */
@@ -285,11 +288,6 @@
       }
     }
     
-    
-    .failure {
-      color: red;
-      text-shadow: 0 0 10px red, 0 0 20px darkred;
-    }
 
     #coins {
       font-size: 20px;
