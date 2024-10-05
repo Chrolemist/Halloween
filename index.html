@@ -394,28 +394,28 @@
         max-height: 844px;
       }
 
+      /* Placera det valda ordet under rubriken */
       #displayChosenWord {
         position: fixed;
-        top: 50%; /* Vertikal centrering */
-        left: 50%; /* Horisontell centrering */
-        transform: translate(-50%, -50%);
-        font-size: 20px; /* Anpassa storleken för mobil */
-        width: 90vw; /* Begränsa bredden till en andel av skärmen */
-        text-align: center; /* Centrera texten */
+        top: 80px; /* Placera direkt under #level */
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 20px;
+        width: 90vw;
+        text-align: center;
       }
       
     
       /* Anpassa rubriken för mindre skärmar */
       #level {
         position: fixed;
-        top: 10;
-        left: 0;
-        width: 100vw;
-        font-size: 40px; /* Minska rubrikstorleken för mobilen */
-        margin-top: 10px; /* Justera så att det finns utrymme ovanför rubriken */
-        padding: 10px; /* Lägg till lite extra utrymme inuti rubriken */
-        text-align: center; /* Centrera rubriken */
-        z-index: 1; /* Högre z-index för att hålla den ovanför andra element */
+        top: 10px; /* Placera rubriken med lite avstånd från toppen */
+        left: 50%;
+        transform: translateX(-50%); /* Centrerar rubriken horisontellt */
+        font-size: 40px;
+        width: 90vw;
+        text-align: center;
+        z-index: 1; /* Högre z-index för att hålla rubriken ovanför andra element */
       }
 
       .button-container {
@@ -447,13 +447,13 @@
         pointer-events: none; 
       }
 
-      /* Anpassa textinmatningsfältets storlek */
+       /* Placera textinmatningsfältet under det valda ordet */
       input[type="text"] {
         position: fixed;
-        bottom: 15%;
+        top: 130px; /* Placera direkt under #displayChosenWord */
         left: 50%;
         transform: translateX(-50%);
-        width: 90vw; /* Nästan full bredd för mobiler */
+        width: 90vw; /* Full bredd för textinmatningsfältet */
         font-size: 16px;
         padding: 10px;
         border: 1px solid #ccc;
