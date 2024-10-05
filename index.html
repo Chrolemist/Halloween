@@ -505,7 +505,7 @@
       
       if (typedWord.toLowerCase() === chosenWord.toLowerCase()) {
           coinSound.play();
-          coins++;
+          coins += currentLevel
           updateCoins();
           
           hasTypedCorrectWord = true; 
@@ -751,8 +751,7 @@ function buyExtraTime() {
     clearInterval(extraTimeInterval);  
   
     
-    coins++;  
-    updateCoins();  
+      
   
     
     if (currentLevel > maxReachedLevel) {
