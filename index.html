@@ -355,12 +355,15 @@
     }
     
     /* Anpassning för mindre skärmar (t.ex. mobiler) */
-    @media (max-width: 479px) {
+    @media (max-width: 500px) {
       /* Anpassa timern */
       #gameTimer, #extraTimer {
+        position: fixed;         /* Fixera knapparna längst ner på skärmen */
+        top: 0; 
         font-size: 30px;
         width: 50vw;
         padding: 5px;
+        max-height: 844px;
       }
     
       /* Anpassa rubriken för mindre skärmar */
