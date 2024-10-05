@@ -349,7 +349,8 @@
 
       body {
         
-        
+        overflow-y: auto; /* Tillåt vertikal scroll om det behövs */
+        scroll-behavior: smooth;
         height: 100%;
         margin: 0;
         padding: 0;
@@ -395,6 +396,9 @@
         font-size: 50px; /* Minska rubrikstorleken för mobilen */
         margin-top: 20px; /* Skapa utrymme ovanför rubriken */
         text-align: center; /* Centrera rubriken */
+        scroll-padding-top: 60px; /* Extra utrymme för att förhindra att den hamnar utanför vid scroll */
+        position: relative;
+        z-index: 1; /* Sätt en högre z-index för att hålla den över andra element */
       }
 
       .button-container {
