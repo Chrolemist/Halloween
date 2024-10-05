@@ -476,7 +476,7 @@
 
     let clickSound = new Audio('soundeffects/click.wav');
     let clockSound = new Audio('soundeffects/clock.wav');
-    clockSound.loop = true;
+    
     let heartbeatsSound = new Audio('soundeffects/heartbeats.wav');
     let backgroundSound = new Audio('soundeffects/background_ambient.mp3');
     let coinSound = new Audio('soundeffects/coin.wav');
@@ -527,27 +527,9 @@
     window.onload = function() {
       ambientSound.play();
       coins = 10;
-      updateCoins()
-
-      
-        
-      updateWordList(); 
-      
-      
-      document.getElementById('levelSelectButton').style.display = 'none';    
-      
+      updateCoins(); 
+      document.getElementById('levelSelectButton').style.display = 'none';         
     };
-
-    
-
-    function ChooseWord(word) {
-      clickSound.play();
-      
-      chosenWord = word;
-      document.getElementById('displayChosenWord').innerText = chosenWord;
-      document.getElementById('wordList').style.display = 'none';
-      startCountdownTimer();  
-    }
 
     function TypeWords(event) {
       event.preventDefault();
@@ -565,14 +547,9 @@
           coinSound.play();
           coins += currentLevel
           updateCoins();
-          
-          hasTypedCorrectWord = true; 
-    
-          correctWordsCount++;
-          document.getElementById('typedWords').innerHTML += typedWord + '<br>';
-          document.getElementById('typeWords').value = '';  
-  
-          calculateScore(typedWord);
+          document.getElementById('typeWords').value = '';
+          hasTypedCorrectWord = true;  
+          correctWordsCount++;       
       } else {
           wrongSound.play();
       }
@@ -698,9 +675,11 @@ function startGameTimer() {
 
           
           if (!hasTypedCorrectWord) {
-              gameOver();  
+              gameOver();
+               
           } else {
-              gameWin();  
+              gameWin();
+              
           }
       }
   }, 1000);
@@ -757,16 +736,7 @@ function buyExtraTime() {
 
     
 
-    function updateWordList() {
-      let wordList = wordLists[`level${currentLevel}`];
-      if (!wordList) {
-        console.error(`Word list for level ${currentLevel} is not available!`);
-        return;
-      }
-      let wordListHTML = wordList.map(word => `<li onclick="ChooseWord('${word}')">${word}</li>`).join('');
-      document.getElementById('wordList').innerHTML = wordListHTML;
-      document.getElementById('wordList').style.display = 'block';
-    }
+   
 
     function updateCoins() {
       document.getElementById('coins').innerText = `🪙 Coins: ${coins}`;
@@ -796,12 +766,8 @@ function buyExtraTime() {
       document.getElementById('winMessage').style.display = 'none';
       document.getElementById('loseMessage').style.display = 'none';
       document.getElementById('restart').style.display = 'none';
-      document.getElementById('typedWords').innerHTML = '';
       document.getElementById('formTypeWords').style.display = 'none';
       document.getElementById('typeWords').value = '';
-     
-      updateWordList();
-  
       document.getElementById('levelSelectButton').style.display = 'block';
   }
 
@@ -810,23 +776,16 @@ function buyExtraTime() {
       document.getElementById('level').innerText = `Level: ${currentLevel}`;
   }
 
-  function gameWin() {
+  function gameWin() {  
 
-    wrongSound.pause();
-    clockSound.pause();
-    // Kontrollera om vinnar-ljudet är klart att spelas
-    winSound.addEventListener('canplaythrough', function() {
-      winSound.play();
-    });
-
-    // Fallback om ljudet inte startar korrekt
-    setTimeout(function() {
-      if (winSound.paused) {
-        winSound.play();
-      }
-    }, 100); // Vänta en kort stund innan du spelar upp ljudet igen om det misslyckas
     
-  
+
+    setTimeout(function() {
+      winSound.play();
+    }, 10);
+
+    clockSound.pause();  
+
     clearInterval(gameTimerInterval);  
     clearInterval(extraTimeInterval);  
   
@@ -853,24 +812,20 @@ function buyExtraTime() {
 }
     
 function gameOver() {
+
   if (hasTypedCorrectWord) {
       gameWin(); 
       return; 
   }
-
-  
-  heartbeatsSound.pause();
-  clockSound.pause();
-  winSound.addEventListener('canplaythrough', function() {
-    loseSound.play();
-  });
-
+ 
   // Fallback om ljudet inte startar korrekt
   setTimeout(function() {
     if (loseSound.paused) {
       loseSound.play();
     }
   }, 100); // Vänta en kort stund innan du spelar upp ljudet igen om det misslyckas
+
+  clockSound.pause(); 
 
   clearInterval(gameTimerInterval);  
   clearInterval(extraTimeInterval);  
