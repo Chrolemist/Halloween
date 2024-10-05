@@ -280,20 +280,7 @@
       margin: 20px auto;
       text-align: center;
     }
-
-    #levelSelectMenu {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: rgba(0, 0, 0, 0.9);
-      color: white;
-      padding: 20px;
-      border-radius: 10px;
-      text-align: center;
-      box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
-    }
-    
+  
     #levelSelectMenu {
       position: absolute;
       top: 50%;
@@ -356,6 +343,16 @@
     
     /* Anpassning för mindre skärmar (t.ex. mobiler) */
     @media (max-width: 500px) {
+
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden; /* Förhindra scrollning */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; /* Se till att innehållet sprids ut över hela sidan */
+      }
       /* Anpassa timern */
       #gameTimer, #extraTimer {
         position: fixed;         /* Fixera knapparna längst ner på skärmen */
