@@ -355,39 +355,39 @@
     }
     
     /* Anpassning för mindre skärmar (t.ex. mobiler) */
-@media (max-width: 600px) {
-  body {
-    font-size: 16px;
-    padding: 10px; /* Mindre padding för att bättre passa mobilskärmen */
-  }
-
-  .game-container {
-    width: 100vw; /* Full bredd för mobila enheter */
-    height: 100vh; /* Full höjd för mobila enheter */
-    padding: 15px; /* Justera padding */
-    border-radius: 0; /* Ta bort avrundade hörn för att maximera utrymme */
-  }
-
-  button {
-    font-size: 18px; /* Mindre textstorlek för knappar på mobilen */
-    width: 100%; /* Knapparna tar upp hela skärmens bredd */
-    margin: 10px 0; /* Justera marginalerna */
-  }
-
-  #level {
-    font-size: 30px; /* Minska fontstorleken för rubriken på mobilen */
-  }
-
-  #gameTimer, #extraTimer {
-    font-size: 20px;
-    width: 60px; /* Gör timer-element mindre för mobilen */
-  }
-
-  input[type="text"] {
-    width: 100%; /* Gör textinmatningsfältet fullbredd */
-    font-size: 16px; /* Minska storlek för att passa mobilskärmar */
-  }
-}
+    @media (max-width: 600px) {
+      /* Anpassa timern */
+      #gameTimer, #extraTimer {
+        font-size: 20px;
+        width: 60px;
+        padding: 5px;
+      }
+    
+      /* Anpassa rubriken för mindre skärmar */
+      #level {
+        font-size: 30px; /* Minska rubrikstorleken för mobilen */
+      }
+    
+      /* Gör knappar fullbredd på mobilskärmar */
+      button {
+        font-size: 18px;
+        width: 100%; /* Knapparna tar upp hela skärmens bredd */
+        padding: 10px;
+      }
+    
+      /* Minska textinmatningsfältets storlek */
+      input[type="text"] {
+        width: 100%; /* Full bredd för textinmatningsfältet */
+        font-size: 16px;
+      }
+    
+      /* Justera behållaren för spelet */
+      .game-container {
+        width: 100vw;
+        height: 100vh;
+        padding: 15px;
+      }
+    }
     
     
     
