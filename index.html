@@ -354,6 +354,10 @@
     @media (max-width: 500px) {
 
       body {
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
         display: flex;
         flex-direction: column;
         justify-content: flex-start; /* Börja från toppen */
@@ -377,9 +381,9 @@
     
       /* Justera rubriken för mindre skärmar */
       #level {
-        position: relative;
+        margin-top: calc(env(safe-area-inset-top) + 10px);
         font-size: 40px; /* Minska rubrikstorleken för mobilen */
-        margin-top: 15px;
+        margin-top: 30px;
         text-align: center;
         width: 100%;
         padding: 10px;
