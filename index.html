@@ -31,8 +31,6 @@
       height: 100vh;
     }
 
-    
-
     .game-container {
       background-image: url(images/Pumpa_3.png);
       background-color: white;
@@ -80,9 +78,7 @@
       text-align: center; 
       letter-spacing: 3px; 
     }
-    
-    
-    
+      
     .word-list {
       list-style: none;
       padding: 0;
@@ -285,32 +281,6 @@
       text-align: center;
     }
 
-    .level-transition {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: rgba(0, 0, 0, 0.8);
-      color: white;
-      padding: 40px;
-      border-radius: 10px;
-      text-align: center;
-      font-size: 48px;
-      box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
-      opacity: 0;
-      z-index: 9999;  
-      transition: opacity 2s ease-in-out;
-    }
-    
-    .level-transition.show {
-      opacity: 1;
-    }
-    
-    .level-transition.fade-out {
-      opacity: 0;
-      transition: opacity 2s ease-in-out;
-    }
-
     #levelSelectMenu {
       position: absolute;
       top: 50%;
@@ -384,6 +354,40 @@
       height: 8px !important; 
     }
     
+    /* Anpassning för mindre skärmar (t.ex. mobiler) */
+@media (max-width: 600px) {
+  body {
+    font-size: 16px;
+    padding: 10px; /* Mindre padding för att bättre passa mobilskärmen */
+  }
+
+  .game-container {
+    width: 100vw; /* Full bredd för mobila enheter */
+    height: 100vh; /* Full höjd för mobila enheter */
+    padding: 15px; /* Justera padding */
+    border-radius: 0; /* Ta bort avrundade hörn för att maximera utrymme */
+  }
+
+  button {
+    font-size: 18px; /* Mindre textstorlek för knappar på mobilen */
+    width: 100%; /* Knapparna tar upp hela skärmens bredd */
+    margin: 10px 0; /* Justera marginalerna */
+  }
+
+  #level {
+    font-size: 30px; /* Minska fontstorleken för rubriken på mobilen */
+  }
+
+  #gameTimer, #extraTimer {
+    font-size: 20px;
+    width: 60px; /* Gör timer-element mindre för mobilen */
+  }
+
+  input[type="text"] {
+    width: 100%; /* Gör textinmatningsfältet fullbredd */
+    font-size: 16px; /* Minska storlek för att passa mobilskärmar */
+  }
+}
     
     
     
