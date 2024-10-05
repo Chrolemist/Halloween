@@ -359,7 +359,7 @@
       /* Anpassa timern */
       #gameTimer, #extraTimer {
         font-size: 10px;
-        width: 60px;
+        width: 100vw;
         padding: 5px;
       }
     
@@ -385,7 +385,17 @@
         margin: 5px 0;           /* Minska marginalen mellan knapparna */
       }
     
-    
+      #startTimer{
+        position: fixed;      
+        top: 50%;             
+        left: 50%;            
+        transform: translate(-50%, -50%); 
+        font-size: 100vw;    
+        color: white;        
+        z-index: 9999;        
+        pointer-events: none; 
+      }
+
       /* Minska textinmatningsfältets storlek */
       input[type="text"] {
         width: 100%; /* Full bredd för textinmatningsfältet */
