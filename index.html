@@ -357,6 +357,18 @@
         flex-direction: column;
         justify-content: space-between; /* Se till att innehållet sprids ut över hela sidan */
       }
+
+      .game-container {
+        background-image: url(images/Pumpa_3.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain; /* Visa hela bilden i mindre format */
+        width: 100vw;
+        height: 100vh; /* Mindre höjd för att visa hela bilden */
+        padding: 15px;
+        box-sizing: border-box;
+        
+      }
       /* Anpassa timern */
       #gameTimer, #extraTimer {
         position: fixed;         /* Fixera knapparna längst ner på skärmen */
@@ -408,12 +420,8 @@
         font-size: 16px;
       }
     
-      /* Justera behållaren för spelet */
-      .game-container {
-        width: 100vw;
-        height: 50vh;
-        padding: 15px;
-      }
+      /* Anpassa spelets container */
+  
 
     }
     
