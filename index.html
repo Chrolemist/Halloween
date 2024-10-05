@@ -269,6 +269,9 @@
       font-size: 20px;
       color: #ff7220;
       font-weight: bold;
+      background-color: rgba(0, 0, 0, 0.5);
+      box-shadow: 0 0 20px rgba(255, 165, 0, 0.8); 
+      text-shadow: 0 0 10px rgba(255, 165, 0, 0.8); 
     }
 
     .monster {
@@ -391,11 +394,11 @@
     
       /* Anpassa rubriken för mindre skärmar */
       #level {
+        position: fixed;
         font-size: 40px; /* Minska rubrikstorleken för mobilen */
         margin-top: 10px; /* Justera så att det finns utrymme ovanför rubriken */
         padding: 10px; /* Lägg till lite extra utrymme inuti rubriken */
         text-align: center; /* Centrera rubriken */
-        position: relative;
         z-index: 1; /* Högre z-index för att hålla den ovanför andra element */
       }
 
