@@ -172,8 +172,11 @@
       display: flex;
       flex-direction: column; 
       justify-content: center;
+      align-items: center;
       gap: 20px; 
       margin-top: 20px; 
+      width: 100%; /* Se till att behållaren inte är större än skärmen */
+      padding: 0; /* Minska eventuell padding för att undvika överskjutning */
     }
     
     button {
@@ -185,11 +188,11 @@
       box-shadow: 0 0 15px rgba(255, 102, 0, 0.5);  
       text-shadow: 0 0 10px rgba(255, 102, 0, 1);
       transition: transform 0.3s ease, background-color 0.3s ease;
-      padding: 10px 20px;
       cursor: pointer;
-      width: 450px;
-      margin: auto;
-    } 
+      width: 90%; /* Använd procentbaserad bredd */
+      max-width: 450px; /* Sätt en maximal bredd för större skärmar */
+      margin: 0 auto; /* Centrera knapparna */
+    }
   
     button:hover {
         background-color: #b51717; 
@@ -382,17 +385,16 @@
         bottom: 0;
         left: 0;
         width: 100vw;  /* Säkerställ att knapparna tar upp hela bredden av skärmen */
-        background-color: transparent;
-        padding: 10px;
+        background-color: transparent;    
         box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+        padding: 0;
       }
     
       button {
-        font-size: 18px;
-        width: 100%;             
-        padding: 15px;           
-        margin: 5px 0; 
-        box-sizing: border-box;          
+        font-size: 18px; /* Mindre textstorlek på mobila enheter */
+        width: 95%; /* Gör knapparna nästan fullbredd för mobil */
+        max-width: none; /* Ingen maxbredd på mobiler */
+        margin: 10px auto; /* Centrera dem med lite marginal */
       }
     
       #startTimer{
