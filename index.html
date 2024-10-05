@@ -396,13 +396,16 @@
 
       #displayChosenWord {
         position: fixed;
+        transform: translate(-50%, -50%); 
       }
       
     
       /* Anpassa rubriken för mindre skärmar */
       #level {
         position: fixed;
-        transform: translate(-50%, -50%); 
+        bottom: 0;
+        left: 0;
+        width: 100vw;
         font-size: 40px; /* Minska rubrikstorleken för mobilen */
         margin-top: 10px; /* Justera så att det finns utrymme ovanför rubriken */
         padding: 10px; /* Lägg till lite extra utrymme inuti rubriken */
