@@ -365,15 +365,29 @@
         box-sizing: border-box;
         
       }
-      /* Anpassa timern */
-      #gameTimer, #extraTimer {
-        position: fixed;         /* Fixera knapparna längst ner på skärmen */
-        top: 0; 
+
+      #gameTimer {
+        position: fixed;
+        top: 10px;  /* Placera gameTimer högst upp på skärmen med ett avstånd */
+        left: 50%;  /* Centrerar gameTimer horisontellt */
+        transform: translateX(-50%);  /* Gör att elementet verkligen är centrerat */
         font-size: 30px;
         width: 50vw;
         padding: 5px;
         max-height: 844px;
       }
+
+      #extraTimer {
+        position: fixed;
+        top: 60px;  /* Placera extraTimer under gameTimer genom att justera top-värdet */
+        left: 50%;  /* Centrerar extraTimer horisontellt */
+        transform: translateX(-50%);  /* Gör att elementet verkligen är centrerat */
+        font-size: 30px;
+        width: 50vw;
+        padding: 5px;
+        max-height: 844px;
+      }
+      
     
       /* Anpassa rubriken för mindre skärmar */
       #level {
