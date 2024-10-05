@@ -839,7 +839,16 @@ function gameOver() {
   
   heartbeatsSound.pause();
   clockSound.pause();
-  loseSound.play();
+  winSound.addEventListener('canplaythrough', function() {
+    loseSound.play();
+  });
+
+  // Fallback om ljudet inte startar korrekt
+  setTimeout(function() {
+    if (loseSound.paused) {
+      loseSound.play();
+    }
+  }, 100); // Vänta en kort stund innan du spelar upp ljudet igen om det misslyckas
 
   clearInterval(gameTimerInterval);  
   clearInterval(extraTimeInterval);  
