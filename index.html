@@ -348,24 +348,26 @@
     @media (max-width: 500px) {
 
       body {
-        
-        overflow-y: auto; /* Tillåt vertikal scroll om det behövs */
-        scroll-behavior: smooth;
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        overflow: hidden; /* Förhindra scrollning */
         display: flex;
         flex-direction: column;
-        justify-content: space-between; /* Se till att innehållet sprids ut över hela sidan */
-      }
-
-      .game-container {       
-        width: 100vw;
+        justify-content: flex-start; /* Se till att innehållet börjar från toppen */
+        align-items: center;
         height: 100vh;
+        margin: 0;
+        padding: 0;
+        overflow: hidden; /* Ta bort all scroll */
+    }
+
+      /* Justera behållaren för spelet */
+      .game-container {
+        width: 100vw;
+        height: 100vh; /* Använd hela höjden på skärmen */
         padding: 15px;
         box-sizing: border-box;
-        
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; /* Fördela innehållet jämnt */
+        align-items: center;
       }
 
       #gameTimer {
@@ -393,12 +395,12 @@
     
       /* Anpassa rubriken för mindre skärmar */
       #level {
-        font-size: 50px; /* Minska rubrikstorleken för mobilen */
-        margin-top: 20px; /* Skapa utrymme ovanför rubriken */
+        font-size: 40px; /* Minska rubrikstorleken för mobilen */
+        margin-top: 10px; /* Justera så att det finns utrymme ovanför rubriken */
+        padding: 10px; /* Lägg till lite extra utrymme inuti rubriken */
         text-align: center; /* Centrera rubriken */
-        scroll-padding-top: 60px; /* Extra utrymme för att förhindra att den hamnar utanför vid scroll */
         position: relative;
-        z-index: 1; /* Sätt en högre z-index för att hålla den över andra element */
+        z-index: 1; /* Högre z-index för att hålla den ovanför andra element */
       }
 
       .button-container {
@@ -434,6 +436,8 @@
       input[type="text"] {
         width: 100%; /* Full bredd för textinmatningsfältet */
         font-size: 16px;
+        padding: 8px;
+        margin: 10px 0;
       }
     
       /* Anpassa spelets container */
