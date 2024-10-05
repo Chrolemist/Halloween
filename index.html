@@ -979,10 +979,7 @@ function animateLevelTransition() {
   <div id="startTimer"></div>
   <div class="game-container">
 
-    <div class="timer-container">  
-      <div id="gameTimer">🕒</div>
-      <div id="extraTimer" style="display: none;">🕒</div>
-    </div>
+    
     
 
     
@@ -1015,6 +1012,11 @@ function animateLevelTransition() {
     <form id="formTypeWords" onsubmit="TypeWords(event);" style="display:none;">
       <input type="text" id="typeWords" placeholder="Type the sentence then press enter" autocomplete="off" onpaste="showAlert('Copy-pasting is not allowed!'); return false;">
     </form>
+
+    <div class="timer-container">  
+      <div id="gameTimer">🕒</div>
+      <div id="extraTimer" style="display: none;">🕒</div>
+    </div>
 
     <div class="button-container">
       <button id="play" onclick="startGameWithPlayButton()">Play</button>
