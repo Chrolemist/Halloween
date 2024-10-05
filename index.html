@@ -789,8 +789,21 @@ function buyExtraTime() {
   }
 
   function gameWin() {
-    winSound.play();
+
+    wrongSound.pause();
     clockSound.pause();
+    // Kontrollera om vinnar-ljudet är klart att spelas
+    winSound.addEventListener('canplaythrough', function() {
+      winSound.play();
+    });
+
+    // Fallback om ljudet inte startar korrekt
+    setTimeout(function() {
+      if (winSound.paused) {
+        winSound.play();
+      }
+    }, 100); // Vänta en kort stund innan du spelar upp ljudet igen om det misslyckas
+    
   
     clearInterval(gameTimerInterval);  
     clearInterval(extraTimeInterval);  
