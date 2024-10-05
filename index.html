@@ -154,7 +154,7 @@
     }
 
     #extraTimer, #gameTimer {
-      display: block;
+      display: none;
       margin: 0 auto;
     }
   
@@ -615,6 +615,7 @@ function startGameCountdown() {
   document.getElementById('formTypeWords').style.display = 'block';
   document.getElementById('typeWords').focus();
   document.getElementById('displayChosenWord').style.display = 'block'; 
+  document.getElementById('gameTimer').style.display = 'block'; 
 
   
   if (extraCountdown > 0 && !isExtraTimerActive) {
@@ -764,7 +765,6 @@ function buyExtraTime() {
       clearInterval(extraTimeInterval);
   
       document.getElementById('startTimer').style.display = 'none'; 
-      document.getElementById('gameTimer').style.display = 'block';
       document.getElementById('extraTimer').style.display = 'none';
       document.getElementById('displayChosenWord').style.display = 'none'; 
       document.getElementById('play').style.display = 'block';
@@ -821,6 +821,7 @@ function buyExtraTime() {
     
     document.getElementById('formTypeWords').style.display = 'none';
     document.getElementById('displayChosenWord').style.display = 'none';
+    document.getElementById('gameTimer').style.display = 'none'; 
   
     document.getElementById('nextLevelButton').style.display = 'block';
   
@@ -852,7 +853,7 @@ function gameOver() {
 
   clearInterval(gameTimerInterval);  
   clearInterval(extraTimeInterval);  
-
+  document.getElementById('gameTimer').style.display = 'none'; 
   document.getElementById('formTypeWords').style.display = 'none';
   document.getElementById('displayChosenWord').style.display = 'none'; 
 
