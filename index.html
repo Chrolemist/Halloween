@@ -357,7 +357,7 @@
 
       .game-container {       
         width: 100vw;
-        height: 100vh; /* Mindre höjd för att visa hela bilden */
+        height: 100vh;
         padding: 15px;
         box-sizing: border-box;
         
@@ -378,22 +378,21 @@
       }
 
       .button-container {
-        position: fixed;         /* Fixera knapparna längst ner på skärmen */
-        bottom: 0;               /* Placera dem längst ner */
+        position: fixed;
+        bottom: 0;
         left: 0;
-        width: 100vw;            /* Full bredd på skärmen */
-        background-color: transparent; /* Bakgrundsfärg om du vill */
+        width: 100vw;  /* Säkerställ att knapparna tar upp hela bredden av skärmen */
+        background-color: transparent;
         padding: 10px;
-        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5); /* Lägg till en liten skugga för effekt */
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
       }
     
       button {
         font-size: 18px;
-        width: 100%;             /* Knapparna tar upp hela bredden på mobil */
-        padding: 15px;           /* Öka padding för att göra knapparna större */
+        width: 100%;             
+        padding: 15px;           
         margin: 5px 0; 
-        margin-left: 5px;
-        margin-right: 5px;          /* Minska marginalen mellan knapparna */
+        box-sizing: border-box;          
       }
     
       #startTimer{
