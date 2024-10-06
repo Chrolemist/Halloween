@@ -328,6 +328,7 @@
       border-radius: 5px;
       cursor: pointer;
       margin-top: 20px;
+      
     }
     
     #levelSelectMenu button:hover {
@@ -495,7 +496,7 @@
     let startCountdown = 4;
     let countdown = 10;
     let extraTime = 0;
-    let maxReachedLevel = 1;
+    let maxReachedLevel = 0;
 
     let hasTypedCorrectWord = false;
     let gameOverFlag = false;
@@ -528,7 +529,7 @@
       ambientSound.play();
       coins = 10;
       updateCoins(); 
-      document.getElementById('levelSelectButton').style.display = 'none';         
+      
     };
 
     function TypeWords(event) {
@@ -567,6 +568,7 @@
       progressBar: true
     }).show();
     document.getElementById('play').style.display = 'none';  // Dölj play-knappen när spelet startar
+    document.getElementById('buyButton').style.display = 'block'; 
     
     // Välj ett ord automatiskt från nuvarande nivå
     let wordList = wordLists[`level${currentLevel}`];
@@ -587,6 +589,7 @@
     let ready = "Ready!";     
     document.getElementById('startTimer').style.display = 'block';
     document.getElementById('startTimer').style.opacity = '1';
+    document.getElementById('levelSelectButton').style.display = 'none';
 
     document.getElementById('startTimer').innerText = ready;
 
@@ -759,6 +762,7 @@ function buyExtraTime() {
       document.getElementById('extraTimer').style.display = 'none';
       document.getElementById('displayChosenWord').style.display = 'none'; 
       document.getElementById('play').style.display = 'block';
+      document.getElementById('buyButton').style.display = 'block'; 
   
       updateLevelDisplay();
   
@@ -776,18 +780,22 @@ function buyExtraTime() {
       document.getElementById('level').innerText = `Level: ${currentLevel}`;
   }
 
+  function playSound(sound) {
+    sound.play().catch(function(error) {
+        console.log("Ljudet kunde inte spelas upp: ", error);
+    });
+}
+
   function gameWin() {  
 
-    
-
-    setTimeout(function() {
-      winSound.play();
-    }, 10);
+    playSound(winSound);
 
     clockSound.pause();  
 
     clearInterval(gameTimerInterval);  
-    clearInterval(extraTimeInterval);  
+    clearInterval(extraTimeInterval); 
+    
+    
   
     coins += currentLevel;
     updateCoins();  
@@ -802,11 +810,19 @@ function buyExtraTime() {
     document.getElementById('formTypeWords').style.display = 'none';
     document.getElementById('displayChosenWord').style.display = 'none';
     document.getElementById('gameTimer').style.display = 'none'; 
-  
-    document.getElementById('nextLevelButton').style.display = 'block';
-  
     document.getElementById('levelSelectButton').style.display = 'block';
+    document.getElementById('gameTimer').style.display = 'none'; 
+    document.getElementById('buyButton').style.display = 'none'; 
+    document.getElementById('restart').style.display = 'block';
     
+  
+      
+      if (currentLevel === maxReachedLevel) {
+        document.getElementById('nextLevelButton').style.display = 'block';
+        document.getElementById('levelSelectButton').style.display = 'none';
+    } else {
+        document.getElementById('nextLevelButton').style.display = 'none';
+    }
   
     isGameRunning = false; 
 }
@@ -851,25 +867,22 @@ function gameOver() {
 }
 
 function goToNextLevel() {
+  transitionSound.play();
   currentLevel++;
   if (currentLevel > maxReachedLevel) {
       maxReachedLevel = currentLevel; 
-  }
-  
-  updateLevelDisplay();
-  animateLevelTransition();  // Ny funktion för att animera nivån
-  
+  }  
   resetGameForNextLevel();
 }
 
 function goToNextLevelWithEffect() {
-  animateLevelTransition();  // Spela ljud och förstora nivån
+  animateLevelTransition();  
   document.getElementById('nextLevelButton').style.display = 'none';
   document.getElementById('winMessage').style.display = 'none';
   setTimeout(() => {
-    // Gå till nästa nivå efter animationen
+    
     goToNextLevel();
-  }, 1000);  // Vänta 1 sekund för animationen
+  }, 1000);  
 }
 
 
@@ -895,13 +908,17 @@ function showPreviousLevels() {
 }
 
 function replayLevel(level) {
-  
   document.getElementById('levelSelectMenu').style.display = 'none';
 
-  
   currentLevel = level;
-  updateLevelDisplay();
-  updateWordList();
+
+  // Återställ status för den nivå du går tillbaka till
+  hasTypedCorrectWord = false;
+  gameOverFlag = false;
+  isGameRunning = false;
+  correctWordsCount = 0;
+  animateLevelTransition(); 
+  updateLevelDisplay(); 
   resetGameForNextLevel();
 }
 
@@ -946,7 +963,10 @@ function goToHomepage() {
 
 function animateLevelTransition() {
   const levelElement = document.getElementById('level');
-  transitionSound.play();  // Spela upp ljud för övergången
+
+  
+  
+  
 
   // Temporärt öka storleken på nivån och sedan återställ
   levelElement.style.transform = 'scale(1.5)';
@@ -1008,8 +1028,8 @@ function animateLevelTransition() {
       <button id="play" onclick="startGameWithPlayButton()">Play</button>
       <button id="nextLevelButton" onclick="goToNextLevelWithEffect()" style="display:none;">Next Level</button>
       <button id="restart" onclick="playAgain()">Play again</button>
-      <button onclick="buyExtraTime()">Buy 5 Extra Seconds (5 Coins)</button>
-      <button id="levelSelectButton" onclick="showPreviousLevels()">Select Levels</button>
+      <button id="buyButton" onclick="buyExtraTime()" style="display:none;">Buy 5 Extra Seconds (5 Coins)</button>
+      <button id="levelSelectButton" onclick="showPreviousLevels()" style="display:none;">Select Levels</button>
   </div>
 
     <div id="levelSelectMenu" style="display: none;">
